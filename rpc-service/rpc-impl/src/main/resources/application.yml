@@ -1,0 +1,12 @@
+server:
+  port: 8001
+
+#zk注册地址
+register:
+  address: 127.0.0.1:2181
+
+#rpc提供者地址
+rpc:
+  server:
+    address: 127.0.0.1:18868
+

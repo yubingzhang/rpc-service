@@ -1,0 +1,20 @@
+netty业务线程和用户操作绑定（channelHandler）:
+ 1: 用户端连接成功，服务端新建一个channel和该用户端绑定
+
+ 2：channel从EventLoopGroup获得一个EventLoop，并注册到该EventLoop,
+ channel生命周期内和该EventLoop绑定（注册是获得Selectkey）
+
+ 3: channel和用户端进行连接、读写、关闭，生成对应的事件（修改SelectKey状态），触发EventLoop调度线程执行
+
+ 4: 如果是读事件，执行线程调度pipeline来处理用户业务逻辑
+
+
+
+
+ rpc提供者流程：
+
+ 1： 定义接口，及请求和响应参数
+
+ 2： 注册服务到zk
+
+ 3： 启动netty服务
